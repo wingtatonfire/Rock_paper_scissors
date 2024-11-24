@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Title of the document</title>
+</head>
+
+<body>
+    <script>
+        var items = Array("Rock", "Paper", "Scissors");
+        let compChoice = "";
+        let humanChoice = "";
+        let humanScore = 0;
+        let compScore = 0;
+        let timer = 0;
+
+
+        function getComputerChoice() {
+            choice = items[Math.floor(Math.random() * items.length)]
+            return choice
+        }
+
+        function getHumanChoice() {
+            choice = prompt("Please choice Rock Paper or Scissors")
+            firstLetter = choice.charAt(0).toUpperCase()
+            remainingLetter = choice.substring(1)
+            choice = firstLetter + remainingLetter
+            return choice
+        }
+
+        function playRound() {
+            if (humanChoice === "Rock" && compChoice === "Rock") {
+                console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
+                console.log("Tie")
+            }
+            if (humanChoice === "Paper" && compChoice === "Paper") {
+                console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
+                console.log("Tie")
+            }
+            if (humanChoice === "Scissors" && compChoice === "Scissors") {
+                console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
+                console.log("Tie")
+            }
+            if (humanChoice === "Rock" && compChoice === "Paper") {
+                console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
+                compScore++;
+                console.log("Computer wins, paper beats rock")
+            }
+            if (humanChoice === "Scissors" && compChoice === "Rock") {
+                console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
+                compScore++;
+                console.log("Computer wins, rock beats scissors")
+            }
+            if (humanChoice === "Paper" && compChoice === "Scissors") {
+                console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
+                compScore++;
+                console.log("Computer wins, scissors beats paper")
+            }
+            if (humanChoice === "Rock" && compChoice === "Scissors") {
+                console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
+                humanScore++;
+                console.log("You win, rock beats scissors")
+            }
+            if (humanChoice === "Paper" && compChoice === "Rock") {
+                console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
+                humanScore++;
+                console.log("You win, paper beats rock")
+            }
+            if (humanChoice === "Scissors" && compChoice === "Paper") {
+                console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
+                humanScore++;
+                console.log("You win, scissors beat paper")
+            }
+        }
+
+        function playGame() {
+            for (let i = 0; i < 5; i++) {
+                compChoice = getComputerChoice()
+                humanChoice = getHumanChoice()
+                playRound()
+            }
+            console.log(`Human score ${humanScore}`)
+            console.log(`Computer score ${compScore}`)
+        }
+
+        playGame()
+
+
+
+
+    </script>
+    The content of the document......
+</body>
+
+</html>
