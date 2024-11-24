@@ -6,6 +6,14 @@
 </head>
 
 <body>
+    <div class="button">
+        <button class="rock">rock</button>
+        <button class="paper">paper</button>
+        <button class="scissors">scissors</button>
+    </div>
+    <div>
+        <p class="result"></p>
+    </div>
     <script>
         var items = Array("Rock", "Paper", "Scissors");
         let compChoice = "";
@@ -13,25 +21,44 @@
         let humanScore = 0;
         let compScore = 0;
         let timer = 0;
+        
 
+        const text = document.querySelector(".result");
+        const div = document.querySelector(".button");
+        text.setAttribute('style', 'white-space: pre;');
+
+        console.log(div);
+        div.addEventListener("click", (event) => {
+            switch (event.target.className) {
+                case "rock":
+                    console.log(event.target.classList)
+                    humanChoice = "Rock";
+                    playGame()
+                    break;
+                case "paper":
+                    humanChoice = "Paper";
+                    playGame()
+                    break;
+                case "scissors":
+                    humanChoice = "Scissors";
+                    playGame()
+                    break;
+            }
+        })
 
         function getComputerChoice() {
-            choice = items[Math.floor(Math.random() * items.length)]
-            return choice
+            let choice = items[Math.floor(Math.random() * items.length)]
+            return choice;
         }
 
         function getHumanChoice() {
-            choice = prompt("Please choice Rock Paper or Scissors")
-            firstLetter = choice.charAt(0).toUpperCase()
-            remainingLetter = choice.substring(1)
-            choice = firstLetter + remainingLetter
             return choice
         }
 
         function playRound() {
             if (humanChoice === "Rock" && compChoice === "Rock") {
-                console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
-                console.log("Tie")
+                text.textContent += `You picked ${humanChoice}, CPU picked ${compChoice}.` + "\r\n";
+                text.textContent += "Tie" + "\r\n";
             }
             if (humanChoice === "Paper" && compChoice === "Paper") {
                 console.log(`You picked ${humanChoice}, CPU picked ${compChoice}.`)
@@ -74,22 +101,30 @@
         }
 
         function playGame() {
-            for (let i = 0; i < 5; i++) {
-                compChoice = getComputerChoice()
-                humanChoice = getHumanChoice()
-                playRound()
-            }
-            console.log(`Human score ${humanScore}`)
-            console.log(`Computer score ${compScore}`)
+            compChoice = getComputerChoice()
+            playRound()
+            text.textContent += `Human score ${humanScore}` + "\r\n";
+            text.textContent += `Computer score ${compScore}` + "\r\n";
+            checkWinner()
+            
         }
 
-        playGame()
+        function checkWinner () {
+            if (humanScore === 5 || compScore === 5) {
+                if (humanScore > compScore) {
+                    text.textContent = "Human have 5 Score" + "\r\n" + "Human Win!\r\n";
+                } else {
+                    text.textContent = "Computer have 5 score!\r\nComputer Win!\r\n";
+                }
+                humanScore = 0;
+                compScore = 0;
+            }
+        }
 
 
 
 
     </script>
-    The content of the document......
 </body>
 
 </html>
